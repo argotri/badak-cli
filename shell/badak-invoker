@@ -1,0 +1,48 @@
+#!/bin/bash
+
+#Check Env BADAK_INVOKER_HOME already set or not
+if [ -z "$BADAK_INVOKER_HOME" ]; then
+	echo "you need to set BADAK_INVOKER_HOME env variables"
+	exit 1
+fi
+
+#Check Java already setup or not
+echo "checking java"
+java -version
+if [ "$?" -ne 0 ]; then
+	echo "You need to setup the java to run this command"
+	exit 1
+fi
+
+#Setup the basedir
+BASEDIR="--basedir=\"$(pwd)\""
+UNAME="$(uname -s)"
+
+if [[ "$UNAME" == "Linux" || "$UNAME" == "Darwin" ]]; then
+	BADAK_HOME="$BADAK_INVOKER_HOME"
+else
+	#Check cygpath command already install or not
+	echo "checking cygpath"
+	cygpath --version
+	if [ "$?" -ne 0 ]; then
+		echo "You need to setup cygpath command"
+		exit 1
+	fi
+	BADAK_HOME="$(cygpath -u "$BADAK_INVOKER_HOME")"
+fi
+
+#If no argument, will call --help command
+if [ -z "$@" ]; then
+	eval "java -jar $BADAK_HOME/invoker.jar --help"
+	exit 0
+fi
+
+COMMAND="java -jar $BADAK_HOME/invoker.jar $@"
+echo running $COMMAND $BASEDIR
+eval $COMMAND $BASEDIRIN
+
+if [ "$?" -ne 0 ]; then
+	echo "Failed to execute the program, please check the argument parameter or your automation project"
+	echo 'please check "badak-invoker --help" for the argument parameter'
+	exit 1
+fi

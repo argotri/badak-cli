@@ -1,0 +1,23 @@
+{
+  "name": "badak-cli",
+  "version": "1.1.9",
+  "description": "Badak CLI for Badak",
+  "homepage": "https://blibli.com",
+  "bin": {
+    "badak-cli": "bin/badak-cli"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/argotri/badak-cli.git"
+  },
+  "engines": {
+    "node": ">=8"
+  },
+  "scripts": {},
+  "author": "",
+  "license": "Blibli OSS",
+  "dependencies": {
+    "child-process-promise": "^2.2.1",
+    "minimist": "^1.2.0"
+  }
+}
