@@ -24,7 +24,7 @@ module.exports = (args,currentDir)=>{
     }
 
     console.log("Run Command " + command)
-    var child = exec(command, {maxBuffer: 10240 * 500},function (error,stdout, stderr) {
+    var child = exec(command, {maxBuffer: 1024 * 1024 * 500},function (error,stdout, stderr) {
         // console.log(stdout)
         if(error!==null){
             console.log("Error :" +  error)
