@@ -1,6 +1,6 @@
 {
   "name": "badak-cli",
-  "version": "1.1.14",
+  "version": "1.1.15",
   "description": "Badak CLI for Badak",
   "homepage": "https://blibli.com",
   "bin": {
